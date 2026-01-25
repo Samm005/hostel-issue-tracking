@@ -4,8 +4,17 @@ const jwt = require("jsonwebtoken");
 
 const { User } = require("./models");
 
+const { authMiddleware } = require("./middleware");
+
 router.get("/test", (req, res) => {
   res.json({ message: "Routes are working ✅" });
+});
+
+router.get("/protected", authMiddleware, (req, res) => {
+  res.json({
+    message: "You are authenticated ✅",
+    user: req.user
+  });
 });
 
 /* LOGIN */
