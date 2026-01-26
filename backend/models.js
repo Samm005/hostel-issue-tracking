@@ -45,8 +45,29 @@ const LostFoundSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+/* ANNOUNCEMENT */
+const AnnouncementSchema = new mongoose.Schema(
+  {
+    title: String,
+    message: String,
+    target: String, // All / Block A / Students etc.
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }
+  },
+  { timestamps: true }
+);
+
+/* MODELS */
+const User = mongoose.model("User", UserSchema);
+const Issue = mongoose.model("Issue", IssueSchema);
+const LostFound = mongoose.model("LostFound", LostFoundSchema);
+const Announcement = mongoose.model("Announcement", AnnouncementSchema);
+
 module.exports = {
-  User: mongoose.model("User", UserSchema),
-  Issue: mongoose.model("Issue", IssueSchema),
-  LostFound: mongoose.model("LostFound", LostFoundSchema)
+  User,
+  Issue,
+  LostFound,
+  Announcement
 };
