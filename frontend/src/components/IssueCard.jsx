@@ -1,15 +1,6 @@
-function IssueCard({ issue }) {
+function IssueCard({ issue, onStatusChange, isManagement }) {
   return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        padding: "12px",
-        marginBottom: "10px",
-        borderRadius: "6px",
-        backgroundColor: "#1e1e1e",
-        color: "#fff"
-      }}
-    >
+    <div>
       <h4>{issue.title}</h4>
 
       <p>
@@ -24,9 +15,25 @@ function IssueCard({ issue }) {
         <strong>Priority:</strong> {issue.priority}
       </p>
 
-      <p>
-        <strong>Status:</strong> {issue.status}
-      </p>
+      {isManagement ? (
+        <div>
+          <label>Status: </label>
+          <select
+            value={issue.status}
+            onChange={(e) =>
+              onStatusChange(issue._id, e.target.value)
+            }
+          >
+            <option value="Reported">Reported</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+        </div>
+      ) : (
+        <p>
+          <strong>Status:</strong> {issue.status}
+        </p>
+      )}
     </div>
   );
 }
