@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
 import { getIssues, updateIssueStatus } from "../services/api";
 import IssueCard from "./IssueCard";
-import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
 
 function ManagementDashboard() {
   const [issues, setIssues] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role"); // 👈 assuming you store role
 
-    if (!token) return;
+    // 🔐 auth + role guard
+    if (!token || role !== "management") {
+      navigate("/"); // redirect to login
+      return;
+    }
 
     getIssues(token)
-      .then((data) => {
-        setIssues(data);
-      })
-      .catch((err) => {
-        console.error("Error fetching issues:", err);
-      });
-  }, []);
+      .then((data) => setIssues(data))
+      .catch((err) => console.error("Error fetching issues:", err));
+  }, [navigate]);
 
-  // 🔹 THIS IS THE KEY FUNCTION
   const handleStatusChange = async (issueId, newStatus) => {
     const token = localStorage.getItem("token");
 
@@ -31,7 +32,6 @@ function ManagementDashboard() {
         token
       );
 
-      // ✅ update UI state (THIS is what was missing earlier)
       setIssues((prevIssues) =>
         prevIssues.map((issue) =>
           issue._id === issueId ? updatedIssue : issue
@@ -43,24 +43,20 @@ function ManagementDashboard() {
   };
 
   return (
-    <>
-      <Navbar role="management" />
+    <div className="dashboard-container">
+      <h2>Management Dashboard</h2>
 
-      <div>
-        <h2>Management Dashboard</h2>
+      {issues.length === 0 && <p>No issues reported.</p>}
 
-        {issues.length === 0 && <p>No issues reported.</p>}
-
-        {issues.map((issue) => (
-          <IssueCard
-            key={issue._id}
-            issue={issue}
-            onStatusChange={handleStatusChange}
-            isManagement={true}
-          />
-        ))}
-      </div>
-    </>
+      {issues.map((issue) => (
+        <IssueCard
+          key={issue._id}
+          issue={issue}
+          onStatusChange={handleStatusChange}
+          isManagement={true}
+        />
+      ))}
+    </div>
   );
 }
 
