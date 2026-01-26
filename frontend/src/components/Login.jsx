@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { login } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { login } from "../services/api";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -12,8 +12,8 @@ function Login() {
 
     try {
       const data = await login({
-        email: email,
-        password: password
+        email,
+        password
       });
 
       if (!data.token) {
@@ -22,6 +22,7 @@ function Login() {
       }
 
       localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.role);
 
       if (data.role === "student") {
         navigate("/student");
@@ -34,7 +35,7 @@ function Login() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div>
       <h2>Login</h2>
 
       <form onSubmit={handleSubmit}>
