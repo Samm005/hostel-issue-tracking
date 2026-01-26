@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 
-const { User } = require("./models");
+const { User, Issue } = require("./models");
 
 const { authMiddleware } = require("./middleware");
 
@@ -15,6 +15,41 @@ router.get("/protected", authMiddleware, (req, res) => {
     message: "You are authenticated ✅",
     user: req.user
   });
+});
+
+/* CREATE ISSUE (Student) */
+router.post("/issues", authMiddleware, async (req, res) => {
+  try {
+    const { title, description, category, priority } = req.body;
+
+    if (!title) {
+      return res.status(400).json({ message: "Title is required" });
+    }
+
+    const issue = await Issue.create({
+      title,
+      description,
+      category,
+      priority,
+      createdBy: req.user.id
+    });
+
+    res.status(201).json(issue);
+  } catch (err) {
+    console.error("ISSUE CREATE ERROR 👉", err);
+    res.status(500).json({ message: err.message });
+  }
+});
+
+/* GET ALL ISSUES (Student / Management) */
+router.get("/issues", authMiddleware, async (req, res) => {
+  try {
+    const issues = await Issue.find().sort({ createdAt: -1 });
+    res.json(issues);
+  } catch (err) {
+    console.error("ISSUE FETCH ERROR 👉", err);
+    res.status(500).json({ message: err.message });
+  }
 });
 
 /* LOGIN */
