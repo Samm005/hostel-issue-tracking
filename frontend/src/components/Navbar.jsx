@@ -1,7 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 
-function Navbar({ role }) {
+export default function Navbar() {
+  const role = localStorage.getItem("role");
   const navigate = useNavigate();
+
+  // If not logged in → don’t show navbar
+  if (!role) return null;
 
   const logout = () => {
     localStorage.clear();
@@ -9,7 +13,7 @@ function Navbar({ role }) {
   };
 
   return (
-    <nav>
+    <div>
       {role === "student" && (
         <>
           <Link to="/student">Dashboard</Link>{" | "}
@@ -23,9 +27,9 @@ function Navbar({ role }) {
         </>
       )}
 
+      <Link to="/announcements">Announcements</Link>{" | "}
+      <Link to="/lost-found">Lost & Found</Link>{" | "}
       <button onClick={logout}>Logout</button>
-    </nav>
+    </div>
   );
 }
-
-export default Navbar;
