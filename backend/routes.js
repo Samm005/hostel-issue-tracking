@@ -52,6 +52,29 @@ router.get("/issues", authMiddleware, async (req, res) => {
   }
 });
 
+/* UPDATE ISSUE STATUS (MANAGEMENT) */
+router.put("/issues/:id/status", authMiddleware, async (req, res) => {
+  try {
+    const { status } = req.body;
+
+    if (!status) {
+      return res.status(400).json({ message: "Status is required" });
+    }
+
+    const updatedIssue = await Issue.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    );
+
+    res.json(updatedIssue);
+  } catch (err) {
+    console.error("STATUS UPDATE ERROR 👉", err);
+    res.status(500).json({ message: "Failed to update status" });
+  }
+});
+
+
 /* LOGIN */
 router.post("/login", async (req, res) => {
   try {

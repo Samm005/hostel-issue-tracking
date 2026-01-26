@@ -29,3 +29,16 @@ export const createIssue = async (data, token) => {
   });
   return res.json();
 };
+
+export const updateIssueStatus = async (id, status, token) => {
+  const res = await fetch(`${API_URL}/issues/${id}/status`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({ status })
+  });
+
+  return res.json();
+};
