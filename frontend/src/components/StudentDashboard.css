@@ -1,77 +1,158 @@
+/* ========== Dashboard Page ========== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes duskShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow:
+      0 0 6px rgba(234, 255, 0, 0.6),
+      0 0 12px rgba(234, 255, 0, 0.4);
+  }
+  100% {
+    text-shadow:
+      0 0 12px rgba(234, 255, 0, 0.9),
+      0 0 24px rgba(234, 255, 0, 0.6);
+  }
+}
+
+@keyframes subTextGlow {
+  0% {
+    text-shadow:
+      0 0 4px rgba(85, 255, 0, 0.5);
+  }
+  100% {
+    text-shadow:
+      0 0 10px rgba(85, 255, 0, 0.9);
+  }
+}
+
+
 .dashboard-page {
   min-height: 100vh;
-  width: 100vw;               
-  background: linear-gradient(to right, #f1f5f9, #4685de);
+  width: 100vw;
+
+  background: linear-gradient(
+    120deg,
+    #377cdcd3,
+    #2f1f64a1,
+    #e304cd4d
+  );
+
+  background-size: 300% 300%;
+  animation: duskShift 20s ease infinite alternate;
+
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding-top: 60px;
 }
 
+
+/* Container */
 .dashboard-container {
   width: 100%;
-  max-width: 900px;          
+  max-width: 900px;
   padding: 0 20px;
 }
 
+/* Header */
 .dashboard-header {
   text-align: center;
   margin-bottom: 40px;
+  animation: fadeUp 0.5s ease both;
 }
 
 .dashboard-header h1 {
   font-size: 34px;
-  color: #1e293b;
+  font-weight: 800;
+  color: #eaff00;
   margin-bottom: 6px;
+
+  text-shadow:
+    0 0 8px rgb(124, 0, 68),
+    0 0 18px rgba(255, 0, 242, 0.847);
+
+  animation: textGlow 2.5s ease-in-out infinite alternate;
 }
 
 .dashboard-header p {
-  color: #64748b;
-  font-size: 15px;
+  color: #55ff00;
+  font-size: 18px;
+
+  text-shadow:
+    0 0 8px rgba(255, 0, 0, 0.7),
+    0 0 18px rgba(255, 0, 242, 0.847);
+
+  animation: textGlow 2.5s ease-in-out infinite alternate;
 }
 
 /* Section */
 .dashboard-section {
-  background: #ffffff;
-  border-radius: 16px;
+  background: linear-gradient(
+    to bottom right,
+    #ffffff,
+    #f8fafc
+  );
+  border-radius: 18px;
   padding: 30px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  animation: fadeUp 0.55s ease both;
 }
 
+/* Section title */
 .section-title {
   font-size: 20px;
-  color: #334155;
-  margin-bottom: 20px;
+  font-weight: 600;
+  color: #312e81;
+  margin-bottom: 22px;
 }
 
+/* Grid */
 .issues-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
+  gap: 26px;
 }
 
+/* Wrapper */
 .issue-wrapper {
-  background: #f8fafc;
-  border-radius: 12px;
-  padding: 16px;
-  border-left: 5px solid #3b82f6;
+  background: transparent;
 }
 
+/* Empty */
 .empty-box {
   text-align: center;
-  padding: 40px;
-  background: #f1f5f9;
-  border-radius: 12px;
-  color: #64748b;
+  padding: 50px;
+  background: linear-gradient(
+    to bottom right,
+    #f1f5f9,
+    #e0e7ff
+  );
+  border-radius: 14px;
+  color: #475569;
+  font-size: 15px;
 }
 
+/* Mobile */
 @media (max-width: 480px) {
   .dashboard-header h1 {
     font-size: 26px;
   }
 
-.dashboard-section {
+  .dashboard-section {
     padding: 20px;
   }
 }
-

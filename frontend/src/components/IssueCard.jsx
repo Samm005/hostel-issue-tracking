@@ -1,23 +1,26 @@
+import "./IssueCard.css";
+
 function IssueCard({ issue, onStatusChange, isManagement }) {
   return (
-    <div>
-      <h4>{issue.title}</h4>
+    <div className="issue-card">
+      <h4 className="issue-title">{issue.title}</h4>
 
-      <p>
+      <p className="issue-text">
         <strong>Description:</strong> {issue.description}
       </p>
 
-      <p>
-        <strong>Category:</strong> {issue.category}
-      </p>
-
-      <p>
-        <strong>Priority:</strong> {issue.priority}
-      </p>
+      <div className="issue-meta">
+        <span>
+          <strong>Category:</strong> {issue.category}
+        </span>
+        <span className={`priority ${issue.priority.toLowerCase()}`}>
+          {issue.priority}
+        </span>
+      </div>
 
       {isManagement ? (
-        <div>
-          <label>Status: </label>
+        <div className="status-control">
+          <label>Status</label>
           <select
             value={issue.status}
             onChange={(e) =>
@@ -30,7 +33,7 @@ function IssueCard({ issue, onStatusChange, isManagement }) {
           </select>
         </div>
       ) : (
-        <p>
+        <p className="issue-status">
           <strong>Status:</strong> {issue.status}
         </p>
       )}
