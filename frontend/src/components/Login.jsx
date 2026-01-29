@@ -34,7 +34,7 @@ function Login() {
 
             <div className="brand-text">
               <h1>WELCOME</h1>
-              <p>SMART HOSTEL MANAGEMENT</p>
+              <p> HOSTEL ISSUE MANAGEMENT</p>
             </div>
           </div>
 

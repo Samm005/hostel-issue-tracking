@@ -135,13 +135,24 @@
 
 @keyframes glowText {
   from { text-shadow: 0 0 8px rgba(255,255,255,0.4); }
-  to { text-shadow: 0 0 28px rgba(255,255,255,1); }
+  to { text-shadow: 0 0 28px rgb(0, 0, 0); }
 }
 
 .auth-left p {
   font-size: 15px;
   opacity: 0.9;
   max-width: 260px;
+}
+
+.brand-text h1{
+  font-size: 60px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.brand-text p{
+  font-size: 18px;
+  font-weight: 600;
+  animation: glowText 2.5s infinite alternate;
 }
 
 .brand-header {
@@ -152,8 +163,8 @@
 }
 
 .brand-logo {
-  width: 64px;
-  height: 64px;
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.22);
   backdrop-filter: blur(8px);
@@ -162,7 +173,7 @@
   justify-content: center;
   font-weight: 800;
   letter-spacing: 1.5px;
-  font-size: 18px;
+  font-size: 25px;
   color: white;
   box-shadow:
     0 0 22px rgba(255, 255, 255, 0.55),
@@ -228,14 +239,14 @@
 }
 
 .auth-right h2 {
-  font-size: 26px;
+  font-size: 36px;
   color: #0b4f8a;
   margin-bottom: 10px;
 }
 
 .subtext {
-  font-size: 14px;
-  color: #666;
+  font-size: 20px;
+  color: #fff6f6;
   margin-bottom: 34px;
 }
 
