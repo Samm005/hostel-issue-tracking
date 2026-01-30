@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getIssues, updateIssueStatus } from "../services/api";
 import IssueCard from "./IssueCard";
 import { useNavigate } from "react-router-dom";
+import "./StudentDashboard";
 
 function ManagementDashboard() {
   const [issues, setIssues] = useState([]);
@@ -9,11 +10,10 @@ function ManagementDashboard() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const role = localStorage.getItem("role"); // 👈 assuming you store role
+    const role = localStorage.getItem("role");
 
-    // 🔐 auth + role guard
     if (!token || role !== "management") {
-      navigate("/"); // redirect to login
+      navigate("/");
       return;
     }
 
@@ -42,22 +42,34 @@ function ManagementDashboard() {
     }
   };
 
-  return (
+ return (
+  <div className="dashboard-page">
     <div className="dashboard-container">
-      <h2>Management Dashboard</h2>
+      <div className="dashboard-header">
+        <h1>Management Dashboard</h1>
+        <p>Review and resolve reported hostel issues</p>
+      </div>
 
-      {issues.length === 0 && <p>No issues reported.</p>}
+      <div className="dashboard-section">
+        {issues.length === 0 && (
+          <div className="empty-box">No issues reported.</div>
+        )}
 
-      {issues.map((issue) => (
-        <IssueCard
-          key={issue._id}
-          issue={issue}
-          onStatusChange={handleStatusChange}
-          isManagement={true}
-        />
-      ))}
+        <div className="issues-grid">
+          {issues.map((issue) => (
+            <div className="issue-wrapper" key={issue._id}>
+              <IssueCard
+                issue={issue}
+                onStatusChange={handleStatusChange}
+                isManagement={true}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default ManagementDashboard;
