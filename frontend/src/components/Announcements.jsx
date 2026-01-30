@@ -3,6 +3,7 @@ import {
   getAnnouncements,
   createAnnouncement
 } from "../services/api";
+import "./Announcements.css";
 
 export default function Announcements() {
   const role = localStorage.getItem("role");
@@ -30,45 +31,49 @@ export default function Announcements() {
   };
 
   return (
-    <div>
-      <h2>Announcements</h2>
+    <div className="announcements-page">
+      <div className="announcements-container">
+        <h2 className="announcements-title">Announcements</h2>
 
-      {role === "management" && (
-        <>
-          <input
-            placeholder="Title"
-            value={form.title}
-            onChange={(e) =>
-              setForm({ ...form, title: e.target.value })
-            }
-          />
-          <input
-            placeholder="Message"
-            value={form.message}
-            onChange={(e) =>
-              setForm({ ...form, message: e.target.value })
-            }
-          />
-          <input
-            placeholder="Target (All / Block A etc)"
-            value={form.target}
-            onChange={(e) =>
-              setForm({ ...form, target: e.target.value })
-            }
-          />
-          <button onClick={submitAnnouncement}>Post</button>
-          <hr />
-        </>
-      )}
+        {role === "management" && (
+          <div className="announcement-form">
+            <input
+              placeholder="Title"
+              value={form.title}
+              onChange={(e) =>
+                setForm({ ...form, title: e.target.value })
+              }
+            />
+            <textarea
+              placeholder="Message"
+              value={form.message}
+              onChange={(e) =>
+                setForm({ ...form, message: e.target.value })
+              }
+            />
+            <input
+              placeholder="Target (All / Block A etc)"
+              value={form.target}
+              onChange={(e) =>
+                setForm({ ...form, target: e.target.value })
+              }
+            />
+            <button onClick={submitAnnouncement}>Post Announcement</button>
+          </div>
+        )}
 
-      {announcements.map((a) => (
-        <div key={a._id}>
-          <h4>{a.title}</h4>
-          <p>{a.message}</p>
-          <small>Target: {a.target}</small>
-          <hr />
+        <div className="announcement-list">
+          {announcements.map((a) => (
+            <div key={a._id} className="announcement-card">
+              <h4>{a.title}</h4>
+              <p>{a.message}</p>
+              <span className="announcement-target">
+                🎯 {a.target}
+              </span>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 }

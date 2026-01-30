@@ -4,6 +4,7 @@ import {
   createLostFound,
   updateLostFoundStatus
 } from "../services/api";
+import "./LostFound.css";
 
 export default function LostFound() {
   const role = localStorage.getItem("role");
@@ -37,73 +38,76 @@ export default function LostFound() {
   };
 
   return (
-    <div>
-      <h2>Lost & Found</h2>
+    <div className="lostfound-page">
+      <div className="lostfound-container">
+        <h2 className="lostfound-title">Lost & Found</h2>
 
-      {/* STUDENT FORM */}
-      {role === "student" && (
-        <>
-          <input
-            placeholder="Item name"
-            value={form.itemName}
-            onChange={(e) =>
-              setForm({ ...form, itemName: e.target.value })
-            }
-          />
-          <input
-            placeholder="Description"
-            value={form.description}
-            onChange={(e) =>
-              setForm({ ...form, description: e.target.value })
-            }
-          />
-          <input
-            placeholder="Location"
-            value={form.location}
-            onChange={(e) =>
-              setForm({ ...form, location: e.target.value })
-            }
-          />
-          <select
-            value={form.status}
-            onChange={(e) =>
-              setForm({ ...form, status: e.target.value })
-            }
-          >
-            <option>Lost</option>
-            <option>Found</option>
-          </select>
-          <button onClick={submitItem}>Submit</button>
-        </>
-      )}
-
-      <hr />
-
-      {/* LIST FOR BOTH */}
-      {items.map((item) => (
-        <div key={item._id}>
-          <p><b>{item.itemName}</b></p>
-          <p>{item.description}</p>
-          <p>Location: {item.location}</p>
-
-          {role === "management" ? (
-            <select
-              value={item.status}
+        {/* STUDENT FORM */}
+        {role === "student" && (
+          <div className="lostfound-form">
+            <input
+              placeholder="Item name"
+              value={form.itemName}
               onChange={(e) =>
-                changeStatus(item._id, e.target.value)
+                setForm({ ...form, itemName: e.target.value })
+              }
+            />
+            <input
+              placeholder="Description"
+              value={form.description}
+              onChange={(e) =>
+                setForm({ ...form, description: e.target.value })
+              }
+            />
+            <input
+              placeholder="Location"
+              value={form.location}
+              onChange={(e) =>
+                setForm({ ...form, location: e.target.value })
+              }
+            />
+            <select
+              value={form.status}
+              onChange={(e) =>
+                setForm({ ...form, status: e.target.value })
               }
             >
               <option>Lost</option>
               <option>Found</option>
-              <option>Claimed</option>
             </select>
-          ) : (
-            <p>Status: {item.status}</p>
-          )}
 
-          <hr />
+            <button onClick={submitItem}>Submit</button>
+          </div>
+        )}
+
+        {/* LIST */}
+        <div className="lostfound-list">
+          {items.map((item) => (
+            <div key={item._id} className="lostfound-card">
+              <h4>{item.itemName}</h4>
+              <p>{item.description}</p>
+              <p className="location">📍 {item.location}</p>
+
+              {role === "management" ? (
+                <select
+                  value={item.status}
+                  onChange={(e) =>
+                    changeStatus(item._id, e.target.value)
+                  }
+                >
+                  <option>Lost</option>
+                  <option>Found</option>
+                  <option>Claimed</option>
+                </select>
+              ) : (
+                <span className={`status ${item.status.toLowerCase()}`}>
+                  {item.status}
+                </span>
+              )}
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 }
