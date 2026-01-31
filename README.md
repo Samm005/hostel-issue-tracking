@@ -44,3 +44,27 @@ npm run dev
 - `PUT /api/issues/:id` – Update issue status
 - `GET /api/announcements` – Fetch announcements
 - `POST /api/lost-found` – Report lost or found items
+
+## Dummy Data 
+
+After connecting to database, add dummy data for users 
+Sign in will be implemented later
+
+[{
+  "_id": {
+    "$oid": "697ce9f47f552ec81fdc18d1"
+  },
+  "name": "Student One",
+  "email": "student@test.com",
+  "password": "Student@123##",
+  "role": "student"
+},
+{
+  "_id": {
+    "$oid": "697ce9f47f552ec81fdc18d3"
+  },
+  "name": "Hostel Admin",
+  "email": "admin@test.com",
+  "password": "Admin@123",
+  "role": "management"
+}]
