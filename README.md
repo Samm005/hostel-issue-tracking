@@ -12,7 +12,6 @@ A full-stack web application for students to report hostel issues and for manage
 - Lost & Found module
 - Announcements
 - Issue tracking and status updates
-
 ## Project Setup
 
 ### Prerequisites
@@ -45,5 +44,3 @@ npm run dev
 - `PUT /api/issues/:id` – Update issue status
 - `GET /api/announcements` – Fetch announcements
 - `POST /api/lost-found` – Report lost or found items
-
-
