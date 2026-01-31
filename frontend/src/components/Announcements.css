@@ -1,0 +1,237 @@
+/* ================= PAGE ================= */
+.announcements-page {
+  min-height: 100vh;
+  padding-top: 140px;
+  padding-bottom: 80px;
+  display: flex;
+  justify-content: center;
+
+   background-color: #ffffff;
+
+  background-image:
+    /* TOP LEFT – soft */
+    radial-gradient(circle at 10% 15%, rgba(200,245,250,0.85) 0 280px, transparent 300px),
+
+    /* TOP RIGHT – large */
+    radial-gradient(circle at 85% 10%, rgba(190,240,250,0.85) 0 320px, transparent 350px),
+
+    /* LEFT CENTER */
+    radial-gradient(circle at 5% 55%, rgba(120,200,255,0.9) 0 220px, transparent 250px),
+
+    /* RIGHT CENTER */
+    radial-gradient(circle at 95% 55%, rgba(90,140,255,0.9) 0 230px, transparent 260px),
+
+    /* BOTTOM LEFT */
+    radial-gradient(circle at 20% 90%, rgba(70,140,240,0.95) 0 260px, transparent 290px),
+
+    /* BOTTOM RIGHT */
+    radial-gradient(circle at 80% 90%, rgba(60,110,230,0.95) 0 270px, transparent 300px),
+
+    /* SMALL FLOATERS */
+    radial-gradient(circle at 30% 25%, rgba(100,170,255,0.85) 0 45px, transparent 60px),
+    radial-gradient(circle at 70% 30%, rgba(100,210,230,0.85) 0 55px, transparent 70px),
+    radial-gradient(circle at 25% 70%, rgba(120,200,240,0.85) 0 50px, transparent 65px),
+    radial-gradient(circle at 75% 70%, rgba(90,120,230,0.85) 0 50px, transparent 65px);
+}
+
+/* ================= CONTAINER ================= */
+.announcements-container {
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 28px;
+  animation: fadeUp 0.9s ease both;
+}
+
+/* ================= TITLE ================= */
+.announcements-title {
+  text-align: center;
+  font-size: 44px;
+  font-weight: 700;
+  color: #002a6a;
+  margin-bottom: 40px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* ================= FORM (MANAGEMENT) ================= */
+.announcement-form {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(14px);
+  border-radius: 26px;
+  padding: 44px 48px;
+  margin-bottom: 56px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(120,170,255,0.25),
+    0 40px 110px rgba(0,0,0,0.3),
+    0 0 90px rgba(120,180,255,0.45);
+
+  animation: fadeUp 0.9s ease both;
+}
+
+.announcement-form input,
+.announcement-form textarea {
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,42,106,0.25);
+  font-size: 18px;
+
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(120deg, #e8f2ff, #ffffff) border-box;
+
+  transition: all 0.3s ease;
+}
+
+.announcement-form textarea {
+  resize: none;
+  min-height: 140px;
+}
+
+.announcement-form input:focus,
+.announcement-form textarea:focus {
+  outline: none;
+  border-color: transparent;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(120deg, #0d6efd, #6cc8ee) border-box;
+
+  box-shadow:
+    0 0 0 4px rgba(13,110,253,0.25),
+    0 0 28px rgba(13,110,253,0.45);
+
+  transform: translateY(-2px);
+}
+
+/* button */
+.announcement-form button {
+  padding: 20px;
+  border-radius: 18px;
+  border: none;
+
+  background: linear-gradient(135deg, #0878d9, #002a6a);
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.announcement-form button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px rgba(0,42,106,0.45);
+}
+
+.announcement-form button:active {
+  transform: scale(0.97);
+}
+
+/* ================= LIST ================= */
+.announcement-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+/* ================= CARD ================= */
+.announcement-card {
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(14px);
+  border-radius: 24px;
+  padding: 32px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(120,170,255,0.25),
+    0 26px 70px rgba(0,0,0,0.28);
+
+  animation: cardRise 0.6s ease both;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (hover: hover) {
+  .announcement-card:hover {
+    box-shadow:
+      inset 0 0 0 1px rgba(120,170,255,0.4),
+      0 40px 110px rgb(3, 13, 124),
+      0 0 60px rgba(120,180,255,0.35);
+  }
+}
+
+.announcement-card h4 {
+  font-size: 22px;
+  color: #002a6a;
+  margin-bottom: 12px;
+}
+
+.announcement-card p {
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+.announcement-target {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #e1f4ff;
+  color: #004c99;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardRise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .announcements-title {
+    font-size: 34px;
+  }
+
+  .announcement-form {
+    padding: 32px;
+  }
+
+  .announcement-form input,
+  .announcement-form textarea {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .announcements-title {
+    font-size: 28px;
+  }
+
+  .announcement-form {
+    padding: 26px;
+  }
+
+  .announcement-form button {
+    font-size: 16px;
+    padding: 16px;
+  }
+}

@@ -1,0 +1,226 @@
+body {
+  padding-top: 110px;
+}
+
+/* ===== Wrapper ===== */
+.nav-wrapper {
+  position: fixed;
+  top: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* ===== Pill Container ===== */
+.nav-pill {
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  width: 90%;
+  max-width: 1100px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+
+  transition: all 0.4s ease;
+}
+
+/* ===== Logo ===== */
+.nav-logo {
+  background: #111;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 8px 18px;
+  border-radius: 999px;
+}
+
+/* ===== Links ===== */
+.nav-links {
+  display: flex;
+  gap: 18px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #111;
+  font-size: 1.05rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 999px;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.nav-links a:hover {
+  background: #111;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.nav-links a:active {
+  transform: scale(0.96);
+}
+
+/* ===== Right Section ===== */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ===== Logout Button ===== */
+.logout-btn {
+  background: #111;
+  color: #fff;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.logout-btn:hover {
+  background: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.logout-btn:active {
+  transform: scale(0.95);
+}
+
+/* ===== Hamburger ===== */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: #111;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* Hamburger → X */
+.nav-pill.open .hamburger span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-pill.open .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-pill.open .hamburger span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  body {
+    padding-top: 120px; /* slightly more for mobile */
+  }
+
+  .nav-pill {
+    justify-content: space-between;
+    border-radius: 18px;
+    padding: 12px 14px;
+  }
+
+  .nav-logo {
+    font-size: 0.95rem;
+    padding: 7px 16px;
+  }
+
+  /* Dropdown menu */
+  .nav-links {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 12px;
+    right: 12px;
+
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 14px 0;
+
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+
+    transform: translateY(-10px) scale(0.98);
+    transition: all 0.35s ease;
+
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .nav-pill.open .nav-links {
+    max-height: 400px;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .nav-links a {
+    width: 90%;
+    text-align: center;
+    font-size: 1.15rem;
+    padding: 12px;
+    border-radius: 14px;
+
+    animation: fadeSlide 0.4s ease forwards;
+  }
+
+  .logout-btn {
+    width: 90%;
+    margin: 10px auto 0;
+    font-size: 1.1rem;
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* ===== Entry Animation ===== */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,188 @@
+/* ===== PAGE BACKGROUND ===== */
+.report-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  /* navbar spacing */
+  padding-top: 140px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 60px;
+
+   background-color: #ffffff;
+
+  background-image:
+    /* TOP LEFT – soft */
+    radial-gradient(circle at 10% 15%, rgba(200,245,250,0.85) 0 280px, transparent 300px),
+
+    /* TOP RIGHT – large */
+    radial-gradient(circle at 85% 10%, rgba(190,240,250,0.85) 0 320px, transparent 350px),
+
+    /* LEFT CENTER */
+    radial-gradient(circle at 5% 55%, rgba(120,200,255,0.9) 0 220px, transparent 250px),
+
+    /* RIGHT CENTER */
+    radial-gradient(circle at 95% 55%, rgba(90,140,255,0.9) 0 230px, transparent 260px),
+
+    /* BOTTOM LEFT */
+    radial-gradient(circle at 20% 90%, rgba(70,140,240,0.95) 0 260px, transparent 290px),
+
+    /* BOTTOM RIGHT */
+    radial-gradient(circle at 80% 90%, rgba(60,110,230,0.95) 0 270px, transparent 300px),
+
+    /* SMALL FLOATERS (kept away from center) */
+    radial-gradient(circle at 30% 25%, rgba(100,170,255,0.85) 0 45px, transparent 60px),
+    radial-gradient(circle at 70% 30%, rgba(100,210,230,0.85) 0 55px, transparent 70px),
+    radial-gradient(circle at 25% 70%, rgba(120,200,240,0.85) 0 50px, transparent 65px),
+    radial-gradient(circle at 75% 70%, rgba(90,120,230,0.85) 0 50px, transparent 65px);
+}
+
+/* ===== CARD ===== */
+.report-card {
+  width: 100%;
+  max-width: 560px; /* slightly wider for desktop */
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(18px);
+  border-radius: 28px;
+  padding: 52px 48px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(120,170,255,0.25),
+    0 35px 110px rgba(0,0,0,0.28),
+    0 0 90px rgba(120,180,255,0.45);
+
+  animation: fadeUp 0.8s ease both;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* subtle hover */
+@media (hover: hover) {
+  .report-card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 0 0 1px rgba(120,170,255,0.35),
+      0 50px 140px rgba(0,0,0,0.35),
+      0 0 90px rgba(44,106,182,0.45);
+  }
+}
+
+/* ===== TITLE ===== */
+.report-card h2 {
+  text-align: center;
+  font-size: 38px; /* increased for laptop */
+  font-weight: 700;
+  color: #002a6a;
+  margin-bottom: 34px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* ===== FORM ===== */
+.report-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.report-card input,
+.report-card textarea,
+.report-card select {
+  padding: 18px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,42,106,0.25);
+  font-size: 17px; /* bigger desktop text */
+
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(120deg, #e8f2ff, #ffffff) border-box;
+
+  transition: all 0.3s ease;
+}
+
+.report-card textarea {
+  resize: none;
+  min-height: 140px;
+}
+
+/* focus state */
+.report-card input:focus,
+.report-card textarea:focus,
+.report-card select:focus {
+  outline: none;
+  border-color: transparent;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(120deg, #0d6efd, #6cc8ee) border-box;
+
+  box-shadow:
+    0 0 0 4px rgba(13,110,253,0.25),
+    0 0 28px rgba(13,110,253,0.45);
+
+  transform: translateY(-1px);
+}
+
+/* ===== BUTTON ===== */
+.report-card button {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 16px;
+  border: none;
+
+  background: linear-gradient(135deg, #0878d9, #002a6a);
+  color: white;
+  font-size: 18px; /* bigger CTA */
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.report-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 42px rgba(0,42,106,0.4);
+}
+
+.report-card button:active {
+  transform: scale(0.97);
+}
+
+/* ===== RESPONSIVE (mobile stays compact) ===== */
+@media (max-width: 640px) {
+  .report-page {
+    padding-top: 120px;
+  }
+
+  .report-card {
+    padding: 32px 26px;
+    max-width: 100%;
+  }
+
+  .report-card h2 {
+    font-size: 26px;
+  }
+
+  .report-card input,
+  .report-card textarea,
+  .report-card select {
+    font-size: 15px;
+    padding: 14px 16px;
+  }
+
+  .report-card button {
+    font-size: 16px;
+    padding: 14px;
+  }
+}
+
+/* ===== ENTRY ===== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
